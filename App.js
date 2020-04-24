@@ -11,6 +11,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import ContactScreen from './src/screens/ContactScreen';
 import locationData from "./src/json/location.json";
 import contactData from "./src/json/contact.json";
+import homeData from "./src/json/home.json";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,7 +44,7 @@ const LocationStack = () => {
             headerTitleStyle: {
               fontWeight: '400',
               fontSize: 20,
-              marginLeft:-130
+              // marginLeft:-130
             },  
            })}
         />      
@@ -79,7 +80,7 @@ const ContactStack = () => {
             headerTitleStyle: {
               fontWeight: '400',
               fontSize: 20,
-              marginLeft:-130
+              // marginLeft:-130
             },  
            })}
         />      
@@ -99,7 +100,7 @@ const HomeStack = () => {
               height:80,
               backgroundColor:"#A7050E",
             },
-            headerLeft:()=><Text style={{fontWeight: '400',fontSize: 20,color:"#fff",marginLeft:16}}>國北文創新鮮人</Text>
+          headerLeft:()=><Text style={{fontWeight: '400',fontSize: 20,color:"#fff",marginLeft:16}}>{homeData.homeTitle}</Text>
           }}
         />     
       </Stack.Navigator>
@@ -151,9 +152,19 @@ const App = () => {
           }
         }}
       >
-        <Tab.Screen name="首頁" component={HomeScreen} />
-        <Tab.Screen name="地點篇" component={LocationStack} />
-        <Tab.Screen name="資訊聯絡篇" component={ContactStack} />
+        <Tab.Screen name="首頁" component={HomeStack}/>
+        <Tab.Screen name="地點篇" component={LocationStack}  
+        options={props => {
+          return {
+              tabBarVisible: !props.route.state || props.route.state.index === 0,
+          };
+        }}/>
+        <Tab.Screen name="資訊聯絡篇" component={ContactStack}  
+        options={props => {
+          return {
+              tabBarVisible: !props.route.state || props.route.state.index === 0,
+          };
+        }}/>
       </Tab.Navigator>
     </NavigationContainer>
   );

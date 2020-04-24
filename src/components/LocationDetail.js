@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ddd",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 0.1,
-    shadowRadius: 2,
     elevation: 1,
     marginLeft: 24,
     marginRight: 24,
-    marginTop: 16,
+    marginTop: 14,
+    marginBottom:6,
     backgroundColor:"#DBDBDB"
   },
   cardSectionStyle: {
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   stateStyle:{
     marginTop:48,
-    marginLeft:"38%",
+    marginLeft:"37.5%",
     fontSize:16,
     color:"#656565",
   },
