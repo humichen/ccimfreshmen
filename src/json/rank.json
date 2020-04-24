@@ -1,0 +1,41 @@
+{
+    "rankTitle": "排行榜",
+    "rankTitlesmall":"排名",
+    "rankList":[
+        {
+            "name":"王小明",
+            "order":1
+        },
+        {
+            "name":"李大華",
+            "order":2
+        },
+        {
+            "name":"期中",
+            "order":3
+        },
+        {
+            "name":"報告",
+            "order":4
+        },
+        {
+            "name":"Demo",
+            "order":5
+        },
+        {
+            "name":"之後",
+            "order":6
+        },
+        {
+            "name":"配合",
+            "order":7
+        },
+        {
+            "name":"Firebase",
+            "order":8
+        },
+        {
+            "name":"來做",
+            "order":9
+        }
+]}

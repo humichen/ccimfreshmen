@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View } from 'react-native';
+import { ProgressBar} from 'react-native-paper';
 import homeData from "../json/home.json";
 
 // Make a component
@@ -7,11 +8,27 @@ const HomeScreen = ({ navigation }) => {
   return (
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
       <View style={styles.cardContainerStyle}>
-        <View style={styles.part1box}>
+        {/* <View style={styles.part1box}>
           <View style={styles.decoratebox}>
             <Text style={styles.part1word}>{homeData.part1}</Text>
             <Image style={styles.ccimlogoStyle} source={require('../../assets/ccimlogo.png')} />
           </View>
+        </View> */}
+        <View style={styles.part1box}>
+          <View style={styles.part1mark}></View>
+            <View style={styles.part1wordbox}>
+              <Text style={styles.nameStyle}>姓名：</Text>
+              <View style={styles.locationprobar}>
+                <Text style={styles.probartitle}>地點篇&emsp;&emsp;：</Text>
+                <ProgressBar progress={0.5} style={styles.probarStyle} color={'#FEBC5F'}/>
+                <Text style={styles.ansright}> /8</Text>
+              </View>
+              <View style={styles.contactprobar}>
+                <Text style={styles.probartitle}>資訊聯絡篇：</Text>
+                <ProgressBar progress={0.5} style={styles.probarStyle} color={'#FEBC5F'}/>
+                <Text style={styles.ansright}> /8</Text>
+              </View>
+            </View>
         </View>
         <View style={styles.part2box}>
           <View style={{ height: 28 }}>
@@ -60,7 +77,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     height: 140,
     backgroundColor: "#fff",
-    justifyContent: "center",
+    flexDirection:"row"
   },
   decoratebox: {
     height: 126,
@@ -131,8 +148,49 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginBottom: 4
   },
-  contactbox:{
-    marginTop:8
+  contactbox: {
+    marginTop: 8
+  },
+  part1mark:{
+    backgroundColor:"#A7050E",
+    width:20
+  },
+  part1wordbox:{
+    marginLeft:12,
+    marginRight:15,
+    justifyContent:"center"
+  },
+  nameStyle:{
+    color:"#000",
+    fontSize:16,
+    lineHeight:21
+  },
+  locationprobar:{
+    flexDirection:"row",
+    alignItems:"center",
+    marginTop:22
+  },
+  contactprobar:{
+    flexDirection:"row",
+    alignItems:"center",
+    marginTop:18
+  },
+  probarStyle:{
+    width:162,
+    height:8,
+    backgroundColor:"#E0E0E0"
+  },
+  probartitle:{
+    color:"#000000",
+    fontSize:12,
+    height:17,
+    lineHeight:16,
+    marginRight:5
+  },
+  ansright:{
+    fontSize:12,
+    color:"#000",
+    marginLeft:6
   }
 });
 

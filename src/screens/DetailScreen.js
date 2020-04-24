@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View } from 'react-native';
+import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View,StatusBar} from 'react-native';
 
 
 const DetailScreen = ({ route }) => {
@@ -13,7 +13,7 @@ const DetailScreen = ({ route }) => {
   } = route.params;
 
   return (
-    <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
+    <ImageBackground style={{ flex: 1,}} source={require('../../assets/bg_all.png')}>
       <Image style={styles.imgrecStyle} source={{ uri: recimage }} />
       <View style={styles.cardContainerStyle}>
         <View style={styles.introductionbox}>
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   },
   hintmark:{
     width:20,
+    height:48,
     backgroundColor:"#A7050E"
   },
   hintwordbox:{

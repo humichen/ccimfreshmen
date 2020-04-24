@@ -1,6 +1,5 @@
 import React from "react";
 import { View, FlatList,ImageBackground } from "react-native";
-import Header from "../components/Header";
 import LocationDetail from "../components/LocationDetail";
 import contactData from "../json/contact.json";
 
