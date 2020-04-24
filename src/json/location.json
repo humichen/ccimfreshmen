@@ -1,0 +1,76 @@
+{
+   "locationTitle": "地點篇-任務列表",
+   "locationList": [
+      {
+         "title": "文創系辦",
+         "bgimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/bg_ccimoffice.png?raw=true",
+         "recimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/img_ccimoffice_rec.jpg?raw=true",
+         "description": "系主任與助教辦公的地方，同學們有事都可以到這裡來詢問喔！系上老師們的信箱以及大一到大四的班級聯絡信箱也都在這裡喔！ ",
+         "hint":"視聽館1樓的角落",
+         "laybel":"請輸入代碼",
+         "ans":"11"
+      },
+      {
+         "title": "文創廣場",
+         "bgimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/bg_ccimsquare.png?raw=true",
+         "recimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/img_ccimsquare_rec.jpg?raw=true",
+         "description": "這裡有許多桌椅很適合當大家的討論空間，這裡也是文創系學長姐們很常出沒的地點。系上的公告牆也在這裡，會張貼戲商公告以及榮譽榜等資訊。廣場的電視每天都會播放系上同學拍攝的影片。周圍的彩繪白板定時會重新設計，歡迎有興趣的同學來投稿！",
+         "hint":"視聽館1樓",
+         "laybel":"請輸入代碼",
+         "ans":"22"
+      },      
+      {
+         "title": "F101電繡室",
+         "bgimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/bg_f101.png?raw=true",
+         "recimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/img_f101_rec.jpg?raw=true",
+         "description": "電繡室裡除了有電子刺繡機外，還有縫紉機、雷切機與3D列印機，如果有需要的同學歡迎到系辦詢問喔！",
+         "hint":"哪裡的門上掛了塊布呢？",
+         "laybel":"請輸入代碼",
+         "ans":"33"
+      },
+      {
+         "title": "F102空間",
+         "bgimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/bg_f102.png?raw=true",
+         "recimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/img_f102_rec.jpg?raw=true",
+         "description": "是個開放的討論空間，只要在門口的表格登記一下就可以使用了，並且系學會管理的書櫃也在這裏。",
+         "hint":"三間教室中間的那間",
+         "laybel":"請輸入代碼",
+         "ans":"44"
+      },
+      {
+         "title": "F106教室",
+         "bgimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/bg_f106.png?raw=true",
+         "recimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/img_f106_rec.jpg?raw=true",
+         "description": "這間教室是大家最常借用來討論與辦活動的教室，並且教室後面還有大四專用物品架，用來放置畢業製作用的東西。\n\nP.S F105和A04也是系上管理的教室，如有需要也可以借用，可以到系網查看教室借用情況喔！",
+         "hint":"電梯旁邊",
+         "laybel":"請輸入代碼",
+         "ans":"55"
+      },
+      {
+         "title": "儲藏室",
+         "bgimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/bg_storageroom.png?raw=true",
+         "recimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/img_storageroom_rec.jpg?raw=true",
+         "description": "系辦物品以及系上球隊物品放置處，大家不要把自己的私人物品放在這裡喔，經查獲違規物品系辦會直接處理掉喔！",
+         "hint":"樓梯下方",
+         "laybel":"請輸入代碼",
+         "ans":"66"
+      },
+      {
+         "title": "資訊走廊",
+         "bgimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/bg_cciminfo.png?raw=true",
+         "recimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/img_cciminfo_rec.jpg?raw=true",
+         "description": "走廊的一邊是大四學長姐畢業製作的宣傳牆，另一邊則是張貼各式活動、比賽、升學資訊的海報，若你有想宣傳的活動，歡迎拿海報到文創系辦申請張貼喔！",
+         "hint":"通往電梯的道路",
+         "laybel":"請輸入代碼",
+         "ans":"77"
+      },
+      {
+         "title": "臥龍二九",
+         "bgimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/bg_29.png?raw=true",
+         "recimage": "https://github.com/humichen/ccimfreshmen/blob/master/assets/img_29_rec.jpg?raw=true",
+         "description": "臥龍二九，一棟有著紅磚及黑色大門的建築。這樣的空間是展覽空間、音樂表演空間，同時也是學生的實驗場所，歡迎大家有事沒事都可以來這裡喔！",
+         "hint":"舊校區的磚房",
+         "laybel":"請輸入代碼",
+         "ans":"88"
+      }
+]}
