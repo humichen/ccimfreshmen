@@ -58,12 +58,12 @@ const MainTabNavigator = () => {
           },
         }}
       >
-        <Tab.Screen name="login" component={LoginScreen}
+        {/* <Tab.Screen name="login" component={LoginScreen}
         options={() => {
             return {
                 tabBarVisible: false,
             };
-          }}/>
+          }}/> */}
         <Tab.Screen name="首頁" component={HomeStack} 
         // options={props => {
         //     return {

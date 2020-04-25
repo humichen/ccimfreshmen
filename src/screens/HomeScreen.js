@@ -6,6 +6,7 @@ import homeData from "../json/home.json";
 // Make a component
 const HomeScreen = ({ navigation }) => {
   return (
+    <ScrollView>
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
       <View style={styles.cardContainerStyle}>
         {/* <View style={styles.part1box}>
@@ -39,6 +40,7 @@ const HomeScreen = ({ navigation }) => {
             </ImageBackground>
           </View>
           <View style={styles.part2wordbox}>
+            <Text style={styles.part2part1word}>{homeData.part1}</Text>
             <View style={styles.locationbox}>
               <View style={styles.wordtitleStyle}>
                 <View style={styles.markpoint}></View>
@@ -59,13 +61,15 @@ const HomeScreen = ({ navigation }) => {
         </View>
       </View>
     </ImageBackground>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
   cardContainerStyle: {
     marginLeft: 24,
     marginRight: 24,
-    marginTop: "8%",
+    marginTop: "5%",
+    flex:1,
   },
   part1box: {
     borderWidth: 1,
@@ -110,9 +114,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    height: 285,
+    height: 345,
     backgroundColor: "#fff",
-    marginTop: "8%"
+    marginTop: "5%",
+    marginBottom:"5%"
   },
   part2titlebox: {
     height: 28,
@@ -127,7 +132,7 @@ const styles = StyleSheet.create({
   part2wordbox: {
     marginLeft: 10,
     marginRight: 10,
-    marginTop: 16
+    marginTop: 10
   },
   wordtitleStyle: {
     flexDirection: "row",
@@ -191,6 +196,14 @@ const styles = StyleSheet.create({
     fontSize:12,
     color:"#000",
     marginLeft:6
+  },
+  part2part1word:{
+    color:"#000",
+    lineHeight:20,
+    fontSize:12,
+    marginLeft:13,
+    marginBottom:8,
+    height:62
   }
 });
 
