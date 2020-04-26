@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image} from 'react-native';
 
@@ -12,6 +13,7 @@ const MainTabNavigator = () => {
     return (
     <NavigationContainer>
       <Tab.Navigator
+      initialRouteName="login"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconPath;
@@ -54,7 +56,8 @@ const MainTabNavigator = () => {
             padding: 0,
           },
           style:{
-            height:56
+            height:56,
+            width:"125%"
           },
         }}
       >
@@ -84,9 +87,14 @@ const MainTabNavigator = () => {
           };
         }}/>
         <Tab.Screen name="排行榜" component={RankStack}/>
+        <Tab.Screen name="login" component={LoginScreen}
+        options={() => {
+            return {
+                tabBarVisible: false,
+            };
+          }}/>
       </Tab.Navigator>
     </NavigationContainer>
     );
 };
-
 export default MainTabNavigator;

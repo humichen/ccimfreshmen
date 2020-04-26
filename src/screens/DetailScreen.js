@@ -1,6 +1,8 @@
-import React from "react";
-import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View,StatusBar} from 'react-native';
-
+import React, { useContext, useState } from "react";
+import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, StatusBar, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Input } from "react-native-elements";
+import { StoreContext } from "../stores/progressstore";
 
 const DetailScreen = ({ route }) => {
   const { title,
@@ -11,34 +13,78 @@ const DetailScreen = ({ route }) => {
     laybel,
     ans
   } = route.params;
+  const { meState,locationState,contactState} = useContext(StoreContext);
+  const [me, setMe] = meState;
+  // const [location, setlocation]= locationState;
+  // const [contact, setcontact]=contactState;
 
+  const [count, setCount] = useState(false);
+  var show="flex";
+  var show1="none"
+  if (count === true) {
+    // setlocation({...location,bkcolor="#FEBC5F"})
+    show="none";
+    show1="flex";
+  }
   return (
-    <ImageBackground style={{ flex: 1,}} source={require('../../assets/bg_all.png')}>
-      <Image style={styles.imgrecStyle} source={{ uri: recimage }} />
-      <View style={styles.cardContainerStyle}>
-        <View style={styles.introductionbox}>
-          <View style={styles.introductiontitlebox}>
-            <ImageBackground style={{ flex: 1, width: 156, height: 25, marginBottom: 0 }} source={require('../../assets/bg_introduction.png')}>
-              <View style={styles.titlebox}>
-                <Text style={styles.introductiontitle}>{title}說明</Text>
-              </View>
-            </ImageBackground>
+
+    <ImageBackground style={{flex:1}} source={require('../../assets/bg_all.png')}>
+      <KeyboardAwareScrollView>
+        <Image style={styles.imgrecStyle} source={{ uri: recimage }} />
+
+        <View style={styles.cardContainerStyle}>
+          <View style={styles.introductionbox}>
+            <View style={styles.introductiontitlebox}>
+              <ImageBackground style={{ flex: 1, width: 156, height: 25, marginBottom: 0 }} source={require('../../assets/bg_introduction.png')}>
+                <View style={styles.titlebox}>
+                  <Text style={styles.introductiontitle}>{title}說明</Text>
+                </View>
+              </ImageBackground>
+            </View>
+            <View style={styles.descriptionbox}>
+              <Text style={styles.descriptionStyle}>&emsp;&emsp;{description}</Text>
+            </View>
           </View>
-          <View style={styles.descriptionbox}>
-            <Text style={styles.descriptionStyle}>&emsp;&emsp;{description}</Text>
-          </View> 
-        </View>
-        <View style={styles.hintbox}>
-          <View style={styles.hintmark}></View>
-          <View style={styles.hintwordbox}>
-            <Text style={styles.hintword}>地點提示：{hint}</Text>
+          <View style={styles.hintbox}>
+            <View style={styles.hintmark}></View>
+            <View style={styles.hintwordbox}>
+              <Text style={styles.hintword}>地點提示：{hint}</Text>
+            </View>
           </View>
+          <View style={styles.answerbox}>
+            <Text style={{color:"#fff",fontSize:16,display:show1,width:"45%",textAlign:"right"}}>任務已完成</Text>
+            <View style={[styles.inputbox,{display:show}]}>
+              <TextInput
+                // laybel=" "
+                // labelStyle={{ color:"#fff" }}
+                placeholder={laybel}
+                placeholderTextColor="#fff"
+                style={styles.textbox}
+                value={me.ans}
+                onChangeText={(answer) => setMe({ ...me, answer })}
+              />
+            </View>
+            <View style={styles.submitbox}>
+              <TouchableHighlight style={[styles.submit, { display:show }]} 
+              onPress={() => {
+                setCount(true);
+                // setlocation(bkcolor="#FEBC5F");
+              }} 
+              activeOpacity={0.6} 
+              underlayColor={"#6C1B1F"}
+              >
+                <Text style={styles.submittext}>送出</Text>
+              </TouchableHighlight>
+            </View>
+
+
+          </View>
+
         </View>
-        <View style={styles.answerbox}>
-          <Text>{laybel}</Text>
-        </View>
-      </View>
+      </KeyboardAwareScrollView>
+      <View style={styles.bottom}></View>
     </ImageBackground>
+
   );
 }
 
@@ -91,39 +137,74 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 17
   },
-  hintbox:{
+  hintbox: {
     borderWidth: 1,
     borderColor: "#ddd",
     backgroundColor: "#fff",
     height: 48,
-    marginTop:"5%",
-    flexDirection:"row"
+    marginTop: "5%",
+    flexDirection: "row"
   },
-  hintmark:{
-    width:20,
-    height:48,
-    backgroundColor:"#A7050E"
+  hintmark: {
+    width: 20,
+    height: 48,
+    backgroundColor: "#A7050E"
   },
-  hintwordbox:{
-    height:48,
+  hintwordbox: {
+    height: 48,
+    justifyContent: "center"
+  },
+  hintword: {
+    color: "#707070",
+    marginLeft: 12,
+    fontSize: 12,
+    marginRight: 26,
+    lineHeight: 17
+  },
+  answerbox: {
+    height: 48,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    // backgroundColor: "#8B8B8B",
+    // backgroundColor: "#fff",
+    backgroundColor: "#FEBC5F",
+    marginTop: "5%",
+    flexDirection: "row",
+    alignItems: "center",
     justifyContent:"center"
   },
-  hintword:{
-    color:"#707070",
-    marginLeft:12,
-    fontSize:12,
-    marginRight:26,
-    lineHeight:17
-  },
-  answerbox:{
-    height:48,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    backgroundColor: "#fff",
+  inputbox: {
+    width: "80%",
     height: 48,
-    marginTop:"5%",
-    flexDirection:"row",
-    alignItems:"center"
+    backgroundColor: "#8B8B8B",
+    justifyContent: "center",
+  },
+  textbox: {
+    marginLeft: 16,
+    width: 230,
+    height: 48,
+    justifyContent: "center",
+    color: "#fff"
+  },
+  submitbox: {
+    width: "20%",
+    height: 48,
+    // backgroundColor:"#6C1B1F"
+  },
+  submit: {
+    width: "100%",
+    height: 48,
+    backgroundColor:"#A7050E",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  submittext: {
+    color: "#fff",
+    fontSize: 12
+  },
+  bottom:{
+    backgroundColor:"#A7050E",
+    height:20
   }
 });
 

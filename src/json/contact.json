@@ -8,7 +8,10 @@
         "description": "除了系上的課程與老師的基本資訊可以在這裡找到外，關於實習、服務學習、跨領域專長模組申請等表單可以在這裡下載，若要借用系上管理的空間也可以在這裡看到空間的借用情況喔！",
         "hint":"從國北的網站的學術單位就可找到文創系的網站了！",
         "laybel":"請輸入網址",
-        "ans":"https://ccim.ntue.edu.tw/"
+        "ans":"https://ccim.ntue.edu.tw/",
+        "show":"flex",
+        "show1":"none",
+        "count":false
      },
      {
         "title": "文創聯絡網",
@@ -17,7 +20,10 @@
         "description": "「文創聯絡網」是限定國立台北教育大學文化創意產業經營學系所在校及畢業系友加入的fb社團，你可以在這裡看到所有系辦的公告、實習、講座資訊，還有老師們或學長姐們推薦的活動，想收到系上最新的消息就請好好關注文創聯絡網吧！ ",
         "hint":"在FB搜尋文創聯絡網",
         "laybel":"請輸入網址",
-        "ans":"https://www.facebook.com/groups/203638959675931/"
+        "ans":"https://www.facebook.com/groups/203638959675931/",
+        "show":"flex",
+        "show1":"none",
+        "count":false
      },
      {
         "title": "CCIM News文創新聞台",
@@ -26,7 +32,10 @@
         "description": "「CCIM News文創新聞台」是一個由國北文創新聞股經營的新聞專頁，分享系上即時的活動資訊和紀錄。",
         "hint":"在FB搜尋CCIM News文創新聞台",
         "laybel":"請輸入網址",
-        "ans":"https://www.facebook.com/ccimnews/"
+        "ans":"https://www.facebook.com/ccimnews/",
+        "show":"flex",
+        "show1":"none",
+        "count":false
      },
      {
         "title": "臥龍二九。",
@@ -35,7 +44,10 @@
         "description": "「臥龍二九。」是一個fb粉絲專頁，由系學會臥龍股經營管理，關於臥龍二九的活動都會在這裡公告，並且若要借用這個空間也是從這邊聯絡喔！",
         "hint":"在FB搜尋臥龍二九。",
         "laybel":"請輸入網址",
-        "ans":"https://www.facebook.com/wolong2429/"
+        "ans":"https://www.facebook.com/wolong2429/",
+        "show":"flex",
+        "show1":"none",
+        "count":false
      }
 ]}
   

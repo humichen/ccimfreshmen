@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View } from 'react-native';
 import { ProgressBar} from 'react-native-paper';
 import homeData from "../json/home.json";
+// import meData from "../json/me.json"
+import { StoreContext } from "../stores/progressstore";
 
 // Make a component
 const HomeScreen = ({ navigation }) => {
+  const {meState} = useContext(StoreContext);
+  const [me, setMe] = meState;
   return (
     <ScrollView>
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
@@ -18,16 +22,16 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.part1box}>
           <View style={styles.part1mark}></View>
             <View style={styles.part1wordbox}>
-              <Text style={styles.nameStyle}>姓名：</Text>
+              <Text style={styles.nameStyle}>姓名：{me.name}</Text>
               <View style={styles.locationprobar}>
                 <Text style={styles.probartitle}>地點篇&emsp;&emsp;：</Text>
-                <ProgressBar progress={0.5} style={styles.probarStyle} color={'#FEBC5F'}/>
-                <Text style={styles.ansright}> /8</Text>
+                <ProgressBar progress={me.progressbar.location} style={styles.probarStyle} color={'#FEBC5F'}/>
+                  <Text style={styles.ansright}>{me.rightans.location}/8</Text>
               </View>
               <View style={styles.contactprobar}>
                 <Text style={styles.probartitle}>資訊聯絡篇：</Text>
-                <ProgressBar progress={0.5} style={styles.probarStyle} color={'#FEBC5F'}/>
-                <Text style={styles.ansright}> /8</Text>
+                <ProgressBar progress={me.progressbar.contact} style={styles.probarStyle} color={'#FEBC5F'}/>
+                <Text style={styles.ansright}>{me.rightans.contact}/8</Text>
               </View>
             </View>
         </View>
