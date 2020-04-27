@@ -16,6 +16,7 @@ import rankData from "../json/rank.json";
 export const Stack = createStackNavigator();
 
 export const LocationStack = () => {
+    
     return (
         <Stack.Navigator>
           <Stack.Screen 

@@ -12,18 +12,16 @@ const DetailScreen = ({ route }) => {
     hint,
     laybel,
     ans,
-    count
+    array
   } = route.params;
   const { meState, locationsState, contactState } = useContext(StoreContext);
   const [me, setMe] = meState;
-  const [locations, setlocations] = locationsState;
-  const [contact, setcontact] = contactState;
-
+  let A=[me._0,me._1,me._2,me._3,me._4,me._5,me._6,me._7,me._8,me._9,me._10,me._11]
   const [submit, setsubmit] = useState(false);
 
   var showstate = "";
   var showstate1 = ""
-  if (count === false) {
+  if (A[array] === false) {
     showstate = "flex";
     showstate1 = "none"
     if (submit === true) {
@@ -34,6 +32,14 @@ const DetailScreen = ({ route }) => {
     showstate = "none";
     showstate1 = "flex";
   }
+  const [countl, setcountl] = useState(0);
+  const [countc, setcountc] = useState(0);
+  // for(let i=0;i<8;i++){
+  //   if(A[i])setcountl(countl+1);
+  // }
+  // for(let i=8;i<12;i++){
+  //   if(A[i])setcountc(countc+1);
+  // }
 
   return (
 
@@ -57,7 +63,7 @@ const DetailScreen = ({ route }) => {
           <View style={styles.hintbox}>
             <View style={styles.hintmark}></View>
             <View style={styles.hintwordbox}>
-              <Text style={styles.hintword}>地點提示：{hint}</Text>
+              <Text style={styles.hintword}>{hint}</Text>
             </View>
           </View>
           <View style={styles.answerbox}>
@@ -78,10 +84,12 @@ const DetailScreen = ({ route }) => {
                 onPress={() => {
                   if(me.answer===ans){
                     setsubmit(true);
-                    setMe({...me,answer:null});
-                    // setlocations({...locations,count:true})
+                    A[array]=true;
+                    if(array<8)setMe({...me,answer:null,_0:A[0],_1:A[1],_2:A[2],_3:A[3],_4:A[4],_5:A[5],_6:A[6],_7:A[7],_8:A[8],_9:A[9],_10:A[10],_11:A[11],locationbar:(me.locationrightans+1)/8,locationrightans:me.locationrightans+1});
+                    else setMe({...me,answer:null,_0:A[0],_1:A[1],_2:A[2],_3:A[3],_4:A[4],_5:A[5],_6:A[6],_7:A[7],_8:A[8],_9:A[9],_10:A[10],_11:A[11],contactbar:(me.contactrightans+1)/4,contactrightans:me.contactrightans+1});
+
                      alert(
-                       "回答正確",
+                      "回答正確",
                         //  {
                         //    text:"OK",
                         //    onPress: () => {}
@@ -151,19 +159,19 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginTop: 4,
     marginLeft: 14,
-    fontSize: 12,
+    fontSize: 13,
     height: 18,
   },
   descriptionbox: {
     marginTop: 4,
     marginLeft: 14,
-    marginRight: 14,
+    marginRight: 10,
     height: 110,
     justifyContent: "center"
   },
   descriptionStyle: {
     color: "#707070",
-    fontSize: 12,
+    fontSize: 13,
     lineHeight: 17
   },
   hintbox: {
@@ -186,7 +194,7 @@ const styles = StyleSheet.create({
   hintword: {
     color: "#707070",
     marginLeft: 12,
-    fontSize: 12,
+    fontSize: 13,
     marginRight: 26,
     lineHeight: 17
   },
@@ -229,7 +237,7 @@ const styles = StyleSheet.create({
   },
   submittext: {
     color: "#fff",
-    fontSize: 12
+    fontSize: 13
   },
   bottom: {
     backgroundColor: "#A7050E",

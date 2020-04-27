@@ -9,6 +9,16 @@ import { StoreContext } from "../stores/progressstore";
 const HomeScreen = ({ navigation }) => {
   const {meState} = useContext(StoreContext);
   const [me, setMe] = meState;
+  // let countl=0;
+  // let countc=0;
+  // const A=[me._0,me._1,me._2,me._3,me._4,me._5,me._6,me._7,me._8,me._9,me._10,me._11];
+  // for(let i=0;i>8;i++){
+  //   if(A[i])countl++;
+  // }
+  // for(let i=8;i>12;i++){
+  //   if(A[i])countc++;
+  // }
+  // setMe({...me,locationbar:countl,contactbar:countc,locationrightans:countl,contactrightans:countc});
   return (
    
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
@@ -26,13 +36,13 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.nameStyle}>姓名：{me.name}</Text>
               <View style={styles.locationprobar}>
                 <Text style={styles.probartitle}>地點篇&emsp;&emsp;：</Text>
-                <ProgressBar progress={me.progressbar.location} style={styles.probarStyle} color={'#FEBC5F'}/>
-                  <Text style={styles.ansright}>{me.rightans.location}/8</Text>
+                <ProgressBar progress={me.locationbar} style={styles.probarStyle} color={'#FEBC5F'}/>
+                  <Text style={styles.ansright}>{me.locationrightans}/8</Text>
               </View>
               <View style={styles.contactprobar}>
                 <Text style={styles.probartitle}>資訊聯絡篇：</Text>
-                <ProgressBar progress={me.progressbar.contact} style={styles.probarStyle} color={'#FEBC5F'}/>
-                <Text style={styles.ansright}>{me.rightans.contact}/8</Text>
+                <ProgressBar progress={me.contactbar} style={styles.probarStyle} color={'#FEBC5F'}/>
+                <Text style={styles.ansright}>{me.contactrightans}/4</Text>
               </View>
             </View>
         </View>
@@ -49,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.locationbox}>
               <View style={styles.wordtitleStyle}>
                 <View style={styles.markpoint}></View>
-                <Text style={{ fontSize: 12 }}>{homeData.locationtitle}</Text>
+                <Text style={{ fontSize: 13 }}>{homeData.locationtitle}</Text>
               </View>
               <Text style={styles.word}>&emsp;&emsp;{homeData.locationword}</Text>
               <Text style={styles.word}>{homeData.locationway}</Text>
@@ -57,7 +67,7 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.contactbox}>
               <View style={styles.wordtitleStyle}>
                 <View style={styles.markpoint}></View>
-                <Text style={{ fontSize: 12 }}>{homeData.contacttitle}</Text>
+                <Text style={{ fontSize: 13 }}>{homeData.contacttitle}</Text>
               </View>
               <Text style={styles.word}>&emsp;&emsp;{homeData.contactword}</Text>
               <Text style={styles.word}>{homeData.contactway}</Text>
@@ -133,7 +143,7 @@ const styles = StyleSheet.create({
   },
   part2titleStyle: {
     color: "#fff",
-    fontSize: 12
+    fontSize: 13
   },
   part2wordbox: {
     marginLeft: 10,
@@ -152,7 +162,7 @@ const styles = StyleSheet.create({
     marginRight: 4
   },
   word: {
-    fontSize: 12,
+    fontSize: 13,
     color: "#707070",
     lineHeight: 17,
     marginLeft: 13,
@@ -193,20 +203,20 @@ const styles = StyleSheet.create({
   },
   probartitle:{
     color:"#000000",
-    fontSize:12,
+    fontSize:13,
     height:17,
     lineHeight:16,
     marginRight:5
   },
   ansright:{
-    fontSize:12,
+    fontSize:13,
     color:"#000",
     marginLeft:6
   },
   part2part1word:{
     color:"#000",
     lineHeight:20,
-    fontSize:12,
+    fontSize:13,
     marginLeft:13,
     marginBottom:8,
     height:62

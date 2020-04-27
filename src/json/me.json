@@ -1,12 +1,21 @@
 {
     "name":"未命名",
-    "progressbar":{
-        "location":0,
-        "contact":0
-    },
-    "rightans":{
-        "location":0,
-        "contact":0
-    },
-    "answer":""
+    "locationbar":0,
+    "contactbar":0,
+    "locationrightans":0,
+    "contactrightans":0,
+    "answer":"",
+    "_0":false,
+    "_1":false,
+    "_2":false,
+    "_3":false,
+    "_4":false,
+    "_5":false,
+    "_6":false,
+    "_7":false,
+    "_8":false,
+    "_9":false,
+    "_10":false,
+    "_11":false 
+
 }

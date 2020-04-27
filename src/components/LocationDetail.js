@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking,ImageBackground} from "react-native";
+import { StoreContext } from "../stores/progressstore";
 
 const LocationDetail = ({ location, navigation }) => {
+  const { meState } = useContext(StoreContext);
+  const [me, setMe] = meState;
+
+  const A=[me._0,me._1,me._2,me._3,me._4,me._5,me._6,me._7,me._8,me._9,me._10,me._11]
   var state="";
   var bgcolor="";
   var statecolor="";
-  if(location.count){
+  if(A[location.array]){
     state="已完成";
     bgcolor="#FEBC5F"
     statecolor="#fff"
@@ -43,8 +48,8 @@ const styles = StyleSheet.create({
     elevation: 1,
     marginLeft: 24,
     marginRight: 24,
-    marginTop: 14,
-    marginBottom:6,
+    marginTop: "5%",
+    marginBottom:4,
     backgroundColor:"#DBDBDB"
   },
   cardSectionStyle: {

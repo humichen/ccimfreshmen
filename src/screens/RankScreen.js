@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   rankborderbox: {
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: "#A7050E",
     height: "96%",
     marginRight: 10,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     width: 156,
     height: 25,
     marginTop: "-4%",
-    marginLeft: -10,
+    marginLeft: -12,
   },
   rankTitlesmallbox: {
     width: 156,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   rankTitlesmallStyle: {
     color: "#fff",
-    fontSize: 12
+    fontSize: 13
   },
   rankContainer:{
     marginTop:13,

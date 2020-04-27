@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   orderStyle:{
     marginLeft:15,
-    fontSize:14,
+    fontSize:13,
     color:"#fff",
     height:18,
     width:16,
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   nameStyle:{
     width:139,
     height:18,
+    fontSize:13,
     color:"#000",
     lineHeight:18,
     marginLeft:42,
