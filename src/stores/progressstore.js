@@ -8,11 +8,11 @@ export const StoreContext = createContext();
 
 export const StoreProvider = ({ children }) => {  
     const [me, setMe] = useState(meData);
-    const [location, setlocation] = useState(locationData.locationList);
+    const [locations, setlocations] = useState(locationData.locationList);
     const [contact, setcontact] = useState(contactData.contactList);
     const store ={
         meState: [me, setMe],
-        locationState:[location, setlocation],
+        locationsState:[locations, setlocations],
         contactState:[contact, setcontact]
     };
     return (

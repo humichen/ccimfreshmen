@@ -2,19 +2,30 @@ import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking,ImageBackground} from "react-native";
 
 const LocationDetail = ({ location, navigation }) => {
-  let state="未完成";
+  var state="";
+  var bgcolor="";
+  var statecolor="";
+  if(location.count){
+    state="已完成";
+    bgcolor="#FEBC5F"
+    statecolor="#fff"
+  }else{
+    state="未完成";
+    bgcolor="#DBDBDB"
+   statecolor="#656565"
+  }
 
    return (
       <View style={styles.cardContainerStyle}>
         <TouchableOpacity 
             onPress={() => navigation.navigate('Detail',location)} activeOpacity={0.6}
           >
-            <View style={styles.locationbox}>
+            <View style={[styles.locationbox,{backgroundColor:bgcolor}]}>
               <ImageBackground style={{flex:1,width:"95%",flexDirection:"row"}} source={{uri:location.bgimage}}>
                 <View style={styles.titlebox}>
                   <Text style={styles.locationtitle}>{location.title}</Text>
                 </View>
-               <Text style={styles.stateStyle}>{state}</Text>  
+               <Text style={[styles.stateStyle,{color:statecolor}]}>{state}</Text>  
               </ImageBackground>
               
             </View>
@@ -65,7 +76,7 @@ const styles = StyleSheet.create({
     marginTop:48,
     marginLeft:"37.5%",
     fontSize:16,
-    color:"#656565",
+    // color:"#656565",
   },
 });
 

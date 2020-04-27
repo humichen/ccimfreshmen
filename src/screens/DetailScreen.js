@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, StatusBar, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, StatusBar, TextInput, TouchableHighlight, TouchableOpacity,Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Input } from "react-native-elements";
 import { StoreContext } from "../stores/progressstore";
@@ -11,24 +11,33 @@ const DetailScreen = ({ route }) => {
     description,
     hint,
     laybel,
-    ans
+    ans,
+    count
   } = route.params;
-  const { meState,locationState,contactState} = useContext(StoreContext);
+  const { meState, locationsState, contactState } = useContext(StoreContext);
   const [me, setMe] = meState;
-  // const [location, setlocation]= locationState;
-  // const [contact, setcontact]=contactState;
+  const [locations, setlocations] = locationsState;
+  const [contact, setcontact] = contactState;
 
-  const [count, setCount] = useState(false);
-  var show="flex";
-  var show1="none"
-  if (count === true) {
-    // setlocation({...location,bkcolor="#FEBC5F"})
-    show="none";
-    show1="flex";
+  const [submit, setsubmit] = useState(false);
+
+  var showstate = "";
+  var showstate1 = ""
+  if (count === false) {
+    showstate = "flex";
+    showstate1 = "none"
+    if (submit === true) {
+      showstate = "none";
+      showstate1 = "flex";
+    }
+  }else{
+    showstate = "none";
+    showstate1 = "flex";
   }
+
   return (
 
-    <ImageBackground style={{flex:1}} source={require('../../assets/bg_all.png')}>
+    <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
       <KeyboardAwareScrollView>
         <Image style={styles.imgrecStyle} source={{ uri: recimage }} />
 
@@ -52,26 +61,46 @@ const DetailScreen = ({ route }) => {
             </View>
           </View>
           <View style={styles.answerbox}>
-            <Text style={{color:"#fff",fontSize:16,display:show1,width:"45%",textAlign:"right"}}>任務已完成</Text>
-            <View style={[styles.inputbox,{display:show}]}>
+            <Text style={{ color: "#fff", fontSize: 16, display: showstate1, width: "45%", textAlign: "right" }}>任務已完成</Text>
+            <View style={[styles.inputbox, { display: showstate }]}>
               <TextInput
                 // laybel=" "
                 // labelStyle={{ color:"#fff" }}
                 placeholder={laybel}
                 placeholderTextColor="#fff"
                 style={styles.textbox}
-                value={me.ans}
+                value={me.answer}
                 onChangeText={(answer) => setMe({ ...me, answer })}
               />
             </View>
             <View style={styles.submitbox}>
-              <TouchableHighlight style={[styles.submit, { display:show }]} 
-              onPress={() => {
-                setCount(true);
-                // setlocation(bkcolor="#FEBC5F");
-              }} 
-              activeOpacity={0.6} 
-              underlayColor={"#6C1B1F"}
+              <TouchableHighlight style={[styles.submit, { display: showstate }]}
+                onPress={() => {
+                  if(me.answer===ans){
+                    setsubmit(true);
+                    setMe({...me,answer:null});
+                    // setlocations({...locations,count:true})
+                     alert(
+                       "回答正確",
+                        //  {
+                        //    text:"OK",
+                        //    onPress: () => {}
+                        //  }
+                     )
+                  }
+                  else{
+                    alert(
+                      "回答錯誤",
+                        // {
+                        //   title:"TryAgain",
+                        //   onPress: () => {}
+                        // }
+                    )
+                     setMe({...me,answer:null});
+                  }
+                }}
+                activeOpacity={0.6}
+                underlayColor={"#6C1B1F"}
               >
                 <Text style={styles.submittext}>送出</Text>
               </TouchableHighlight>
@@ -171,7 +200,7 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent:"center"
+    justifyContent: "center"
   },
   inputbox: {
     width: "80%",
@@ -194,7 +223,7 @@ const styles = StyleSheet.create({
   submit: {
     width: "100%",
     height: 48,
-    backgroundColor:"#A7050E",
+    backgroundColor: "#A7050E",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -202,9 +231,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 12
   },
-  bottom:{
-    backgroundColor:"#A7050E",
-    height:20
+  bottom: {
+    backgroundColor: "#A7050E",
+    height: 20
   }
 });
 
