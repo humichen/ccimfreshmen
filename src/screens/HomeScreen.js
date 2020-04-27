@@ -10,8 +10,9 @@ const HomeScreen = ({ navigation }) => {
   const {meState} = useContext(StoreContext);
   const [me, setMe] = meState;
   return (
-    <ScrollView>
+   
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
+       <ScrollView>
       <View style={styles.cardContainerStyle}>
         {/* <View style={styles.part1box}>
           <View style={styles.decoratebox}>
@@ -64,8 +65,9 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
       </View>
+      </ScrollView>
     </ImageBackground>
-    </ScrollView>
+    
   );
 }
 const styles = StyleSheet.create({

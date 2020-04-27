@@ -26,6 +26,9 @@ export const LocationStack = () => {
               headerStyle:{
                 height:80,
                 backgroundColor:"#A7050E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
               },
               headerLeft:()=><Text style={{fontWeight: '400',fontSize: 20,color:"#fff",marginLeft:16}}>{locationData.locationTitle}</Text>
             }}
@@ -38,6 +41,9 @@ export const LocationStack = () => {
               headerStyle: {
                 height:80,
                 backgroundColor:"#A7050E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -62,6 +68,9 @@ export const ContactStack = () => {
               headerStyle:{
                 height:80,
                 backgroundColor:"#A7050E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
               },
               headerLeft:()=><Text style={{fontWeight: '400',fontSize: 20,color:"#fff",marginLeft:16}}>{contactData.contactTitle}</Text>
             }}
@@ -74,6 +83,9 @@ export const ContactStack = () => {
               headerStyle: {
                 height:80,
                 backgroundColor:"#A7050E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -108,6 +120,9 @@ export const HomeStack = () => {
               headerStyle:{
                 height:80,
                 backgroundColor:"#A7050E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
               },
             headerLeft:()=><Text style={{fontWeight: '400',fontSize: 20,color:"#fff",marginLeft:16}}>{homeData.homeTitle}</Text>
             }}
@@ -127,6 +142,9 @@ export const RankStack = () => {
               headerStyle:{
                 height:80,
                 backgroundColor:"#A7050E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
               },
             headerLeft:()=><Text style={{fontWeight: '400',fontSize: 20,color:"#fff",marginLeft:16}}>{rankData.rankTitle}</Text>
             }}

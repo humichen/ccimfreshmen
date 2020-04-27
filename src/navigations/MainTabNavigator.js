@@ -51,13 +51,16 @@ const MainTabNavigator = () => {
           inactiveTintColor: '#707070',
           labelStyle: {
             fontSize: 12,
-            marginTop: 0,
+            marginTop: 5,
             marginBottom:8,
             padding: 0,
           },
           style:{
-            height:56,
-            width:"125%"
+            // height:56,
+            width:"125%",
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: -3 },
+            shadowOpacity: 0.1,
           },
         }}
       >
