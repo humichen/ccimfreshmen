@@ -24,7 +24,7 @@ const LoginScreen = ({ navigation }) => {
                 <TextInput
                   placeholder="請輸入名稱"
                   placeholderTextColor="#747474"
-                  maxLength={10}
+                  maxLength={8}
                   style={styles.textbox}
                   value={me.ans}
                   onChangeText={(name) => setMe({ ...me, name })}
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: "#A7050E",
     // justifyContent: "center",
     // alignItems: "center",
     marginTop: "30%",

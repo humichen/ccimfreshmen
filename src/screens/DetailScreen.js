@@ -90,19 +90,11 @@ const DetailScreen = ({ route }) => {
 
                      alert(
                       "回答正確",
-                        //  {
-                        //    text:"OK",
-                        //    onPress: () => {}
-                        //  }
                      )
                   }
                   else{
                     alert(
                       "回答錯誤",
-                        // {
-                        //   title:"TryAgain",
-                        //   onPress: () => {}
-                        // }
                     )
                      setMe({...me,answer:null});
                   }

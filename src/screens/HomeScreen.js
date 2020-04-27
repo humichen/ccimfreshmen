@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View } from 'react-native';
+import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View,TouchableOpacity } from 'react-native';
 import { ProgressBar} from 'react-native-paper';
 import homeData from "../json/home.json";
 // import meData from "../json/me.json"
@@ -9,16 +9,7 @@ import { StoreContext } from "../stores/progressstore";
 const HomeScreen = ({ navigation }) => {
   const {meState} = useContext(StoreContext);
   const [me, setMe] = meState;
-  // let countl=0;
-  // let countc=0;
-  // const A=[me._0,me._1,me._2,me._3,me._4,me._5,me._6,me._7,me._8,me._9,me._10,me._11];
-  // for(let i=0;i>8;i++){
-  //   if(A[i])countl++;
-  // }
-  // for(let i=8;i>12;i++){
-  //   if(A[i])countc++;
-  // }
-  // setMe({...me,locationbar:countl,contactbar:countc,locationrightans:countl,contactrightans:countc});
+
   return (
    
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
@@ -33,7 +24,15 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.part1box}>
           <View style={styles.part1mark}></View>
             <View style={styles.part1wordbox}>
+              <View style={styles.namebox}>
               <Text style={styles.nameStyle}>姓名：{me.name}</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Edit')} style={styles.editbutton} activeOpacity={0.6}>
+                <Image 
+                style={styles.editimg}
+                source={require('../../assets/ic_edit.png')}
+                />
+              </TouchableOpacity>
+              </View>
               <View style={styles.locationprobar}>
                 <Text style={styles.probartitle}>地點篇&emsp;&emsp;：</Text>
                 <ProgressBar progress={me.locationbar} style={styles.probarStyle} color={'#FEBC5F'}/>
@@ -220,6 +219,15 @@ const styles = StyleSheet.create({
     marginLeft:13,
     marginBottom:8,
     height:62
+  },
+  editimg:{
+    width:20,
+    height:20
+  },
+  namebox:{
+    flexDirection:"row",
+    alignItems:"center",
+    justifyContent:"space-between"
   }
 });
 

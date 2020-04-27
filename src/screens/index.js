@@ -8,6 +8,7 @@ import HomeScreen from './HomeScreen';
 import ContactScreen from './ContactScreen';
 import RankScreen from './RankScreen';
 import LoginScreen from './LoginScreen';
+import EditScreen from './EditScreen';
 import locationData from "../json/location.json";
 import contactData from "../json/contact.json";
 import homeData from "../json/home.json";
@@ -103,16 +104,6 @@ export const ContactStack = () => {
 export const HomeStack = () => {
     return (
         <Stack.Navigator>
-            {/* <Stack.Screen 
-            name="login1" 
-            component={LoginScreen} 
-            options={{
-              title: " ",
-              headerStyle:{
-                height:0,
-              },
-            }}
-          />  */}
             <Stack.Screen 
             name="Home3" 
             component={HomeScreen} 
@@ -127,6 +118,22 @@ export const HomeStack = () => {
               },
             headerLeft:()=><Text style={{fontWeight: '400',fontSize: 20,color:"#fff",marginLeft:16}}>{homeData.homeTitle}</Text>
             }}
+          /> 
+          <Stack.Screen 
+            name="Edit" 
+            component={EditScreen}
+            options={() => ({ 
+              title:" ",
+              headerStyle: {
+                height:80,
+                backgroundColor:"#A7050E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
+              },
+              headerTintColor: '#fff',
+              headerLeft:() =>{}
+             })}
           />  
         </Stack.Navigator>
     );

@@ -71,11 +71,11 @@ const MainTabNavigator = () => {
             };
           }}/> */}
         <Tab.Screen name="首頁" component={HomeStack} 
-        // options={props => {
-        //     return {
-        //         tabBarVisible: !props.route.state || props.route.state.index === 0,
-        //     };
-        // }}
+        options={props => {
+            return {
+                tabBarVisible: !props.route.state || props.route.state.index === 0,
+            };
+        }}
         />
         <Tab.Screen name="地點篇" component={LocationStack}  
         options={props => {
