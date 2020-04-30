@@ -18,11 +18,25 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.logincardborderbox}>
               <Image style={styles.ccimlogoStyle} source={require('../../assets/ccimlogo.png')} />
               <Text style={styles.welcomeword}>{homeData.part11}</Text>
+              <View style={styles.input}>
+                <Text style={styles.laybel}>入學年度：</Text>
+                <View style={styles.inputbox}>
+                  <TextInput
+                    placeholder="輸入年度"
+                    placeholderTextColor="#747474"
+                    maxLength={8}
+                    style={styles.textbox}
+                    value={me.ans}
+                    onChangeText={(year) => setMe({ ...me, year })}
+                  />
+                </View>
+              </View>
 
+              <View style={styles.input}>
+              <Text style={styles.laybel}>&emsp;名稱&emsp;：</Text>
               <View style={styles.inputbox}>
-
                 <TextInput
-                  placeholder="請輸入名稱"
+                  placeholder="輸入名稱"
                   placeholderTextColor="#747474"
                   maxLength={8}
                   style={styles.textbox}
@@ -30,6 +44,8 @@ const LoginScreen = ({ navigation }) => {
                   onChangeText={(name) => setMe({ ...me, name })}
                 />
               </View>
+              </View>
+              
 
               <TouchableHighlight onPress={() => navigation.navigate('首頁')} style={styles.gobutton} underlayColor="#A7050E">
                 <Text style={styles.goStyle}>Go</Text>
@@ -45,7 +61,7 @@ const LoginScreen = ({ navigation }) => {
 };
 const styles = StyleSheet.create({
   logincardbox: {
-    height: 459,
+    height: 479,
     width: 320,
     // marginRight: 20,
     // marginLeft: 20,
@@ -65,7 +81,7 @@ const styles = StyleSheet.create({
   logincardborderbox: {
     borderWidth: 1,
     borderColor: "#A7050E",
-    height: 443,
+    height: 463,
     width: 304,
     alignItems: "center",
     margin: 7,
@@ -103,18 +119,27 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   inputbox: {
-    width: 138,
+    width: 150,
     height: 24,
     justifyContent: "center",
     alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: "#707070",
-    marginTop: 18
+    // marginTop: 18
   },
   textbox: {
-    fontSize: 16,
+    fontSize: 13,
     textAlign: "center",
-    width:138
+    width: 138,
+  },
+  input: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop:18
+  },
+  laybel: {
+    justifyContent: "center",
+    fontSize: 13,
   }
 });
 

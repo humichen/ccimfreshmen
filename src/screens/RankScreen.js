@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, FlatList } from 'react-native';
+import { StoreContext } from "../stores/progressstore";
 import RankDetail from "../components/RankDetail";
 import rankData from "../json/rank.json";
 
 // Make a component
 const RankScreen = ({ navigation }) => {
+  const { meState } = useContext(StoreContext);
+  const [me, setMe] = meState;
   return (
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
       <View style={styles.cardContainerStyle}>
@@ -13,20 +16,20 @@ const RankScreen = ({ navigation }) => {
             <View style={styles.ranktitlebox}>
               <ImageBackground style={{ flex: 1, width: 156, height: 25 }} source={require('../../assets/bg_rank.png')}>
                 <View style={styles.rankTitlesmallbox}>
-                  <Text style={styles.rankTitlesmallStyle}>{rankData.rankTitlesmall}</Text>
+                  <Text style={styles.rankTitlesmallStyle}>{me.year}年度{rankData.rankTitlesmall}</Text>
                 </View>
               </ImageBackground>
             </View>
             <View style={styles.rankContainer}>
-            <FlatList
-              data={rankData.rankList}
-              renderItem={({ item }) =>
-                <RankDetail
-                  rank={item}
-                  navigation={navigation}
-                />}
-              keyExtractor={item => item.name}
-            />
+              <FlatList
+                data={rankData.rankList}
+                renderItem={({ item }) =>
+                  <RankDetail
+                    rank={item}
+                    navigation={navigation}
+                  />}
+                keyExtractor={item => item.name}
+              />
             </View>
           </View>
 
@@ -77,11 +80,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 13
   },
-  rankContainer:{
-    marginTop:13,
-    height:"90%",
-    width:"100%",
-    alignItems:"center"
+  rankContainer: {
+    marginTop: 13,
+    height: "90%",
+    width: "100%",
+    alignItems: "center"
   }
 });
 

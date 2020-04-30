@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "wk7",
-    "slug": "wk7",
+    "name": "ccimfreshmen",
+    "slug": "ccimfreshmen",
     "platforms": [
       "ios",
       "android",
@@ -23,6 +23,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }
