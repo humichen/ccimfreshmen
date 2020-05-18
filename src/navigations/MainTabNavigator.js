@@ -11,7 +11,7 @@ import { hide } from 'expo/build/launch/SplashScreen';
 const Tab = createBottomTabNavigator();
 const MainTabNavigator = () => {
     return (
-    <NavigationContainer>
+    // <NavigationContainer>
       <Tab.Navigator
       initialRouteName="login"
         screenOptions={({ route }) => ({
@@ -97,7 +97,7 @@ const MainTabNavigator = () => {
             };
           }}/>
       </Tab.Navigator>
-    </NavigationContainer>
+    // </NavigationContainer>
     );
 };
 export default MainTabNavigator;

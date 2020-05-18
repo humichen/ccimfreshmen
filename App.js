@@ -1,15 +1,17 @@
-import React from 'react';
+import React ,{ useContext,useEffect }  from 'react';
 import { Platform, AsyncStorage } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import MainTabNavigator from './src/navigations/MainTabNavigator';
 import { SplashScreen } from 'expo';
 
-import { StoreProvider } from "./src/stores/progressstore";
-const PERSISTENCE_KEY = "ALBUMS_NAVIGATION_STATE2";
+import { StoreProvider,StoreContext } from "./src/stores/progressstore";
+const PERSISTENCE_KEY = "ALBUMS_NAVIGATION_STATE4";
 
 const App = () => {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
+  const { meState } = useContext(StoreContext);
+  const [me, setMe] = meState;
 
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
@@ -32,7 +34,19 @@ const App = () => {
   if (!isLoadingComplete) {
     return null;
   } else {
-    return (
+    if(me.loginstate){
+      return(
+      <NavigationContainer
+        onStateChange={(state) =>
+          AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+        }
+      >
+       <MainTabNavigator /> 
+
+      </NavigationContainer>
+      )
+    }else{
+      return (
       <NavigationContainer
         initialState={initialNavigationState}
         onStateChange={(state) =>
@@ -43,6 +57,8 @@ const App = () => {
 
       </NavigationContainer>
     );
+    }
+    
   }
 }
 

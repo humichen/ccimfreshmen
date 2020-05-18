@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View,TouchableOpacity } from 'react-native';
+import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View,TouchableOpacity,AsyncStorage } from 'react-native';
 import { ProgressBar} from 'react-native-paper';
 import homeData from "../json/home.json";
 // import meData from "../json/me.json"
@@ -9,7 +9,6 @@ import { StoreContext } from "../stores/progressstore";
 const HomeScreen = ({ navigation }) => {
   const {meState} = useContext(StoreContext);
   const [me, setMe] = meState;
-
   return (
    
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>

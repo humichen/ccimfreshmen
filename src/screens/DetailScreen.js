@@ -1,8 +1,10 @@
-import React, { useContext, useState } from "react";
-import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, StatusBar, TextInput, TouchableHighlight, TouchableOpacity,Alert } from 'react-native';
+import React, { useContext, useState,useEffect } from "react";
+import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, StatusBar, TextInput, TouchableHighlight, TouchableOpacity,Alert,AsyncStorage } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Input } from "react-native-elements";
 import { StoreContext } from "../stores/progressstore";
+const ME_PERSISTENCE_KEY = "ME_PERSISTENCE_KEY";
+const HAS_SET_KEY = "HAS_SET_KEY";
 
 const DetailScreen = ({ route }) => {
   const { title,
@@ -18,6 +20,19 @@ const DetailScreen = ({ route }) => {
   const [me, setMe] = meState;
   let A=[me._0,me._1,me._2,me._3,me._4,me._5,me._6,me._7,me._8,me._9,me._10,me._11]
   const [submit, setsubmit] = useState(false);
+
+  const saveToAsyncStorage = () => {
+    try {
+      AsyncStorage.setItem(ME_PERSISTENCE_KEY, JSON.stringify(me));
+      AsyncStorage.setItem(HAS_SET_KEY, JSON.stringify(true));
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
+  useEffect(() => {
+    saveToAsyncStorage();
+  }, [me]);
 
   var showstate = "";
   var showstate1 = ""

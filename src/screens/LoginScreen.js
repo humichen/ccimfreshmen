@@ -1,12 +1,27 @@
-import React, { useContext, useState } from "react";
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableHighlight, TouchableOpacity, TextInput } from "react-native";
+import React, { useContext, useState,useEffect } from "react";
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableHighlight, TouchableOpacity, TextInput,AsyncStorage } from "react-native";
 import homeData from "../json/home.json";
 import { StoreContext } from "../stores/progressstore";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+const ME_PERSISTENCE_KEY = "ME_PERSISTENCE_KEY";
+const HAS_SET_KEY = "HAS_SET_KEY";
 
 const LoginScreen = ({ navigation }) => {
   const { meState } = useContext(StoreContext);
   const [me, setMe] = meState;
+  const saveToAsyncStorage = () => {
+    try {
+      AsyncStorage.setItem(ME_PERSISTENCE_KEY, JSON.stringify(me));
+      AsyncStorage.setItem(HAS_SET_KEY, JSON.stringify(true));
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
+  useEffect(() => {
+    saveToAsyncStorage();
+  }, [me]);
+
   return (
 
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
@@ -47,7 +62,10 @@ const LoginScreen = ({ navigation }) => {
               </View>
               
 
-              <TouchableHighlight onPress={() => navigation.navigate('首頁')} style={styles.gobutton} underlayColor="#A7050E">
+              <TouchableHighlight 
+              onPress={() =>{ setMe({...me,loginstate:true});navigation.navigate('首頁');}} 
+              style={styles.gobutton} 
+              underlayColor="#A7050E">
                 <Text style={styles.goStyle}>Go</Text>
               </TouchableHighlight>
             </View>

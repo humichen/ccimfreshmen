@@ -1,12 +1,27 @@
-import React, { useContext } from "react";
-import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, TouchableOpacity, TouchableHighlight, TextInput } from 'react-native';
+import React, { useContext,useEffect } from "react";
+import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, TouchableOpacity, TouchableHighlight, TextInput,AsyncStorage } from 'react-native';
 import { StoreContext } from "../stores/progressstore";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+const ME_PERSISTENCE_KEY = "ME_PERSISTENCE_KEY";
+const HAS_SET_KEY = "HAS_SET_KEY";
+
 
 // Make a component
 const EditScreen = ({ navigation }) => {
     const { meState } = useContext(StoreContext);
     const [me, setMe] = meState;
+    const saveToAsyncStorage = () => {
+        try {
+          AsyncStorage.setItem(ME_PERSISTENCE_KEY, JSON.stringify(me));
+          AsyncStorage.setItem(HAS_SET_KEY, JSON.stringify(true));
+        } catch (error) {
+          // Error saving data
+        }
+      };
+    
+      useEffect(() => {
+        saveToAsyncStorage();
+      }, [me]);
 
     return (
         <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
