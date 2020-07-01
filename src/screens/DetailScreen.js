@@ -128,6 +128,7 @@ const DetailScreen = ({ navigation, route }) => {
                           "name":me.name,
                           "timeStamp": Date.now()
                         })
+                        navigation.navigate(from);
                         navigation.navigate('排行榜');
                         alert(
                           "回答正確",
