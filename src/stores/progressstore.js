@@ -4,6 +4,7 @@ import locationData from '../json/location.json';
 import contactData from '../json/contact.json';
 import homeData from '../json/home.json';
 import meData from '../json/me.json';
+import rankdata from '../json/rank.json';
 const ME_PERSISTENCE_KEY = "ME_PERSISTENCE_KEY";
 const HAS_SET_KEY = "HAS_SET_KEY";
 
@@ -13,10 +14,14 @@ export const StoreProvider = ({ children }) => {
     const [me, setMe] = useState(meData);
     const [locations, setlocations] = useState(locationData.locationList);
     const [contact, setcontact] = useState(contactData.contactList);
+    const [isLogin, setIsLogin] = useState(false);
+    const [ordernum,setordernum]=useState(0);
     const store ={
         meState: [me, setMe],
         locationsState:[locations, setlocations],
-        contactState:[contact, setcontact]
+        contactState:[contact, setcontact],
+        isLoginState: [isLogin, setIsLogin],
+        ordernumState:[ordernum,setordernum]
     };
     const restoreState=async () => {
         try {

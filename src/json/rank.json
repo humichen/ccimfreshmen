@@ -4,38 +4,38 @@
     "rankList":[
         {
             "name":"王小明",
-            "order":1
+            "timeStamp":1
         },
         {
             "name":"李大華",
-            "order":2
+            "timeStamp":2
         },
         {
             "name":"期中",
-            "order":3
+            "timeStamp":3
         },
         {
             "name":"報告",
-            "order":4
+            "timeStamp":4
         },
         {
             "name":"Demo",
-            "order":5
+            "timeStamp":5
         },
         {
             "name":"之後",
-            "order":6
+            "timeStamp":6
         },
         {
             "name":"配合",
-            "order":7
+            "timeStamp":7
         },
         {
             "name":"Firebase",
-            "order":8
+            "timeStamp":8
         },
         {
             "name":"來做",
-            "order":9
+            "timeStamp":9
         }
 ]}

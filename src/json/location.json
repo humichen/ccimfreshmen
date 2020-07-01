@@ -9,7 +9,8 @@
          "hint":"地點提示：視聽館1樓的角落",
          "laybel":"請輸入代碼",
          "ans":"11",
-         "array":0
+         "array":0,
+         "from":"Home"
       },
       {
          "title": "文創廣場",
@@ -19,7 +20,8 @@
          "hint":"地點提示：視聽館1樓",
          "laybel":"請輸入代碼",
          "ans":"22",
-         "array":1
+         "array":1,
+         "from":"Home"
       },      
       {
          "title": "F101電繡室",
@@ -29,7 +31,8 @@
          "hint":"地點提示：哪裡的門上掛了塊布呢？",
          "laybel":"請輸入代碼",
          "ans":"33",
-         "array":2
+         "array":2,
+         "from":"Home"
       },
       {
          "title": "F102空間",
@@ -39,7 +42,8 @@
          "hint":"地點提示：三間教室中間的那間",
          "laybel":"請輸入代碼",
          "ans":"44",
-         "array":3
+         "array":3,
+         "from":"Home"
       },
       {
          "title": "F106教室",
@@ -49,7 +53,8 @@
          "hint":"地點提示：電梯旁邊",
          "laybel":"請輸入代碼",
          "ans":"55",
-         "array":4
+         "array":4,
+         "from":"Home"
       },
       {
          "title": "儲藏室",
@@ -59,7 +64,8 @@
          "hint":"地點提示：樓梯下方",
          "laybel":"請輸入代碼",
          "ans":"66",
-         "array":5
+         "array":5,
+         "from":"Home"
       },
       {
          "title": "資訊走廊",
@@ -69,7 +75,8 @@
          "hint":"地點提示：通往電梯的道路",
          "laybel":"請輸入代碼",
          "ans":"77",
-         "array":6
+         "array":6,
+         "from":"Home"
       },
       {
          "title": "臥龍二九",
@@ -79,6 +86,7 @@
          "hint":"地點提示：舊校區的磚房（從文薈樓旁邊出去）",
          "laybel":"請輸入代碼",
          "ans":"88",
-         "array":7
+         "array":7,
+         "from":"Home"
       }
 ]}

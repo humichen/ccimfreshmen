@@ -1,15 +1,18 @@
-import React, { useContext,useEffect } from "react";
+import React, { useContext,useEffect, useState } from "react";
 import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, TouchableOpacity, TouchableHighlight, TextInput,AsyncStorage } from 'react-native';
+import * as firebase from "firebase";
 import { StoreContext } from "../stores/progressstore";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import {VAR} from "../core/variable"
 const ME_PERSISTENCE_KEY = "ME_PERSISTENCE_KEY";
 const HAS_SET_KEY = "HAS_SET_KEY";
-
+import FadeInView from "../animation/fadeAnim"
 
 // Make a component
 const EditScreen = ({ navigation }) => {
     const { meState } = useContext(StoreContext);
     const [me, setMe] = meState;
+    const [changename, setchangename] = useState(me.name);
     const saveToAsyncStorage = () => {
         try {
           AsyncStorage.setItem(ME_PERSISTENCE_KEY, JSON.stringify(me));
@@ -26,7 +29,7 @@ const EditScreen = ({ navigation }) => {
     return (
         <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
             <KeyboardAwareScrollView>
-                <View style={styles.cardbox}>
+                <FadeInView style={styles.cardbox}>
                     <View style={styles.borderbox}>
                         <Text style={styles.title}>更改名稱</Text>
                         <View style={styles.inputbox}>
@@ -36,14 +39,32 @@ const EditScreen = ({ navigation }) => {
                                 maxLength={8}
                                 style={styles.textbox}
                                 value={me.ans}
-                                onChangeText={(name) => setMe({ ...me, name })}
+                                onChangeText={(name) => setchangename(name)}
+                                autoCorrect={false}
                             />
                         </View>
-                        <TouchableHighlight onPress={() => navigation.navigate('Home3')} style={styles.savebutton} underlayColor="#A7050E">
+                        <View style={styles.buttonlayout}>
+                            <TouchableHighlight onPress={() => {
+                            // setMe({...me,completed:false,_0:false,_1:false,_2:false,_3:false,_4:false,_5:false,_6:false,_7:false,});
+                            if(me.completed)firebase.database().ref(parseInt(me.year/100000)-1000+"/"+me.year+"/name").set(me.name);
+                            setMe({...me,name:changename});
+                            navigation.navigate('Home3');
+                        }} 
+                            style={styles.savebutton} underlayColor="#A7050E">
                             <Text style={styles.saveStyle}>Save</Text>
                         </TouchableHighlight>
+                        <TouchableHighlight onPress={() => {
+                            // setMe({...me,completed:false});
+                            setchangename(me.name);
+                            navigation.navigate('Home3');
+                        }} 
+                            style={styles.cancelbutton} underlayColor="#A7050E">
+                            <Text style={styles.cancelStyle}>Cancel</Text>
+                        </TouchableHighlight>
+                        </View>
+                        
                     </View>
-                </View>
+                </FadeInView>
                 
             </KeyboardAwareScrollView>
         </ImageBackground>
@@ -55,9 +76,9 @@ const styles = StyleSheet.create({
         color:"#000"
     },
     savebutton: {
-        width: 138,
+        width: 100,
         height: 44,
-        backgroundColor: "#FEBC5F",
+        backgroundColor: VAR.BUTTON_COLOR_SELECTED,
         borderRadius: 22,
         justifyContent: "center",
         alignItems: "center",
@@ -66,30 +87,30 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 2,
         elevation: 1,
-        marginTop: 26
+        // marginTop: 26
     },
     saveStyle: {
         color: "#fff",
-        fontSize: 20
+        fontSize: 16
     },
     cardbox: {
         backgroundColor: "#fff",
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.1,
-        marginLeft: 24,
-        marginRight: 24,
-        height: 220,
+        marginLeft: VAR.MAIN_MARGIN_LEFT,
+        marginRight: VAR.MAIN_MARGIN_RIGHT,
+        height: 250,
         borderWidth: 2,
-        borderColor: "#A7050E",
+        borderColor: VAR.MAIN_COLOR,
         marginTop:"40%"
     },
     borderbox: {
         backgroundColor: "#fff",
-        borderWidth: 2,
-        borderColor: "#A7050E",
+        borderWidth: 1.5,
+        borderColor: VAR.MAIN_COLOR,
         margin: 6,
-        height: 204,
+        height: 234,
         justifyContent: "center",
         alignItems: "center"
     },
@@ -99,13 +120,37 @@ const styles = StyleSheet.create({
         width: 138,
     },
     inputbox: {
-        width: 138,
+        width: 180,
         height: 30,
         justifyContent: "center",
         alignItems: "center",
         borderBottomWidth: 1,
         borderBottomColor: "#707070",
-        marginTop: 18
+        marginTop: 26
+    },
+    cancelbutton:{
+        // marginTop:16,
+        width: 100,
+        height: 44,
+        
+        backgroundColor:"#f0f0f0",
+        borderRadius: 22,
+        justifyContent: "center",
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        elevation: 1,
+        marginRight:15,
+    },
+    cancelStyle:{
+        color:"#b0aeae",
+        fontSize:16,
+    },
+    buttonlayout:{
+        flexDirection:"row-reverse",
+        marginTop:30
     }
 
 });

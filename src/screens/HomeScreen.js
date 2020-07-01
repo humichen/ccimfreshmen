@@ -1,41 +1,63 @@
-import React, { useContext } from "react";
-import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View,TouchableOpacity,AsyncStorage } from 'react-native';
-import { ProgressBar} from 'react-native-paper';
+import React, { useContext,useRef,useEffect} from "react";
+import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, TouchableOpacity, AsyncStorage,Animated } from 'react-native';
+// import ProgressBar from 'react-native-animated-progress';
+import {ProgressBar} from 'react-native-paper';
+// import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import homeData from "../json/home.json";
 // import meData from "../json/me.json"
 import { StoreContext } from "../stores/progressstore";
+import { VAR } from "../core/variable";
+import FadeInView from "../animation/fadeAnim"
 
 // Make a component
 const HomeScreen = ({ navigation }) => {
-  const {meState} = useContext(StoreContext);
+  const { meState } = useContext(StoreContext);
   const [me, setMe] = meState;
+  const saveToAsyncStorage = () => {
+    try {
+      AsyncStorage.setItem(ME_PERSISTENCE_KEY, JSON.stringify(me));
+      AsyncStorage.setItem(HAS_SET_KEY, JSON.stringify(true));
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
+  useEffect(() => {
+    saveToAsyncStorage();
+  }, [me]);
   return (
-   
+
     <ImageBackground style={{ flex: 1 }} source={require('../../assets/bg_all.png')}>
-       <ScrollView>
-      <View style={styles.cardContainerStyle}>
-        {/* <View style={styles.part1box}>
+      <ScrollView>
+        <FadeInView style={styles.cardContainerStyle}>
+          {/* <View style={styles.part1box}>
           <View style={styles.decoratebox}>
             <Text style={styles.part1word}>{homeData.part1}</Text>
             <Image style={styles.ccimlogoStyle} source={require('../../assets/ccimlogo.png')} />
           </View>
         </View> */}
-        <View style={styles.part1box}>
-          <View style={styles.part1mark}></View>
+          <View style={styles.part1box}>
+            <View style={styles.part1mark}></View>
             <View style={styles.part1wordbox}>
               <View style={styles.namebox}>
-              <Text style={styles.nameStyle}>姓名：{me.name}</Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Edit')} style={styles.editbutton} activeOpacity={0.6}>
-                <Image 
-                style={styles.editimg}
-                source={require('../../assets/ic_edit.png')}
-                />
-              </TouchableOpacity>
+                <Text style={styles.nameStyle}>姓名：{me.name}</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Edit')} style={styles.editbutton} activeOpacity={0.6}>
+                  <Image
+                    style={styles.editimg}
+                    source={require('../../assets/ic_edit.png')}
+                  />
+                </TouchableOpacity>
               </View>
               <View style={styles.locationprobar}>
                 <Text style={styles.probartitle}>地點篇&emsp;&emsp;：</Text>
                 <ProgressBar progress={me.locationbar} style={styles.probarStyle} color={'#FEBC5F'}/>
-                  <Text style={styles.ansright}>{me.locationrightans}/8</Text>
+                {/* <ProgressBarAnimated
+                  width={162}
+                  height={8}
+                  value={me.locationbar * 100}
+                  backgroundColorOnComplete="#E0E0E0"
+                /> */}
+                <Text style={styles.ansright}>{me.locationrightans}/8</Text>
               </View>
               <View style={styles.contactprobar}>
                 <Text style={styles.probartitle}>資訊聯絡篇：</Text>
@@ -43,47 +65,47 @@ const HomeScreen = ({ navigation }) => {
                 <Text style={styles.ansright}>{me.contactrightans}/4</Text>
               </View>
             </View>
-        </View>
-        <View style={styles.part2box}>
-          <View style={{ height: 28 }}>
-            <ImageBackground style={{ flex: 1, width: 160, height: 28 }} source={require('../../assets/bg_missionstatement.png')}>
-              <View style={styles.part2titlebox}>
-                <Text style={styles.part2titleStyle}>{homeData.part2title}</Text>
-              </View>
-            </ImageBackground>
           </View>
-          <View style={styles.part2wordbox}>
-            <Text style={styles.part2part1word}>{homeData.part1}</Text>
-            <View style={styles.locationbox}>
-              <View style={styles.wordtitleStyle}>
-                <View style={styles.markpoint}></View>
-                <Text style={{ fontSize: 13 }}>{homeData.locationtitle}</Text>
-              </View>
-              <Text style={styles.word}>&emsp;&emsp;{homeData.locationword}</Text>
-              <Text style={styles.word}>{homeData.locationway}</Text>
+          <View style={styles.part2box}>
+            <View style={{ height: 28 }}>
+              <ImageBackground style={{ flex: 1, width: 160, height: 28 }} source={require('../../assets/bg_missionstatement.png')}>
+                <View style={styles.part2titlebox}>
+                  <Text style={styles.part2titleStyle}>{homeData.part2title}</Text>
+                </View>
+              </ImageBackground>
             </View>
-            <View style={styles.contactbox}>
-              <View style={styles.wordtitleStyle}>
-                <View style={styles.markpoint}></View>
-                <Text style={{ fontSize: 13 }}>{homeData.contacttitle}</Text>
+            <View style={styles.part2wordbox}>
+              <Text style={styles.part2part1word}>{homeData.part1}</Text>
+              <View style={styles.locationbox}>
+                <View style={styles.wordtitleStyle}>
+                  <View style={styles.markpoint}></View>
+                  <Text style={{ fontSize: 13 }}>{homeData.locationtitle}</Text>
+                </View>
+                <Text style={styles.word}>&emsp;&emsp;{homeData.locationword}</Text>
+                <Text style={styles.word}>{homeData.locationway}</Text>
               </View>
-              <Text style={styles.word}>&emsp;&emsp;{homeData.contactword}</Text>
-              <Text style={styles.word}>{homeData.contactway}</Text>
+              <View style={styles.contactbox}>
+                <View style={styles.wordtitleStyle}>
+                  <View style={styles.markpoint}></View>
+                  <Text style={{ fontSize: 13 }}>{homeData.contacttitle}</Text>
+                </View>
+                <Text style={styles.word}>&emsp;&emsp;{homeData.contactword}</Text>
+                <Text style={styles.word}>{homeData.contactway}</Text>
+              </View>
             </View>
           </View>
-        </View>
-      </View>
+        </FadeInView>
       </ScrollView>
     </ImageBackground>
-    
+
   );
 }
 const styles = StyleSheet.create({
   cardContainerStyle: {
-    marginLeft: 24,
-    marginRight: 24,
-    marginTop: "5%",
-    flex:1,
+    marginLeft: VAR.MAIN_MARGIN_LEFT,
+    marginRight: VAR.MAIN_MARGIN_RIGHT,
+    marginTop: VAR.MAIN_MARGIN_TOP,
+    flex: 1,
   },
   part1box: {
     borderWidth: 1,
@@ -95,12 +117,12 @@ const styles = StyleSheet.create({
     elevation: 1,
     height: 140,
     backgroundColor: "#fff",
-    flexDirection:"row"
+    flexDirection: "row"
   },
   decoratebox: {
     height: 126,
     borderWidth: 1,
-    borderColor: "#A7050E",
+    borderColor: VAR.MAIN_COLOR,
     marginLeft: 7,
     marginRight: 7,
     // flexDirection:"row",
@@ -130,8 +152,8 @@ const styles = StyleSheet.create({
     elevation: 1,
     height: 345,
     backgroundColor: "#fff",
-    marginTop: "5%",
-    marginBottom:"5%"
+    marginTop: VAR.MAIN_MARGIN_TOP,
+    marginBottom: "5%"
   },
   part2titlebox: {
     height: 28,
@@ -154,7 +176,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   markpoint: {
-    backgroundColor: "#A7050E",
+    backgroundColor: VAR.MAIN_COLOR,
     width: 9,
     height: 18,
     marginRight: 4
@@ -170,63 +192,63 @@ const styles = StyleSheet.create({
   contactbox: {
     marginTop: 8
   },
-  part1mark:{
-    backgroundColor:"#A7050E",
-    width:20
+  part1mark: {
+    backgroundColor: VAR.MAIN_COLOR,
+    width: 20
   },
-  part1wordbox:{
-    marginLeft:12,
-    marginRight:15,
-    justifyContent:"center"
+  part1wordbox: {
+    marginLeft: 12,
+    marginRight: 15,
+    justifyContent: "center"
   },
-  nameStyle:{
-    color:"#000",
-    fontSize:16,
-    lineHeight:21
+  nameStyle: {
+    color: "#000",
+    fontSize: 16,
+    lineHeight: 21
   },
-  locationprobar:{
-    flexDirection:"row",
-    alignItems:"center",
-    marginTop:22
+  locationprobar: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 22
   },
-  contactprobar:{
-    flexDirection:"row",
-    alignItems:"center",
-    marginTop:18
+  contactprobar: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 18
   },
-  probarStyle:{
-    width:162,
-    height:8,
-    backgroundColor:"#E0E0E0"
+  probarStyle: {
+    width: 162,
+    height: 8,
+    backgroundColor: "#E0E0E0"
   },
-  probartitle:{
-    color:"#000000",
-    fontSize:13,
-    height:17,
-    lineHeight:16,
-    marginRight:5
+  probartitle: {
+    color: "#000000",
+    fontSize: 13,
+    height: 17,
+    lineHeight: 16,
+    marginRight: 5
   },
-  ansright:{
-    fontSize:13,
-    color:"#000",
-    marginLeft:6
+  ansright: {
+    fontSize: 13,
+    color: "#000",
+    marginLeft: 6
   },
-  part2part1word:{
-    color:"#000",
-    lineHeight:20,
-    fontSize:13,
-    marginLeft:13,
-    marginBottom:8,
-    height:62
+  part2part1word: {
+    color: "#000",
+    lineHeight: 20,
+    fontSize: 13,
+    marginLeft: 13,
+    marginBottom: 8,
+    height: 62
   },
-  editimg:{
-    width:20,
-    height:20
+  editimg: {
+    width: 20,
+    height: 20
   },
-  namebox:{
-    flexDirection:"row",
-    alignItems:"center",
-    justifyContent:"space-between"
+  namebox: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
   }
 });
 

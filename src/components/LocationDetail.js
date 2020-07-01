@@ -1,29 +1,32 @@
 import React, { useContext } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking,ImageBackground} from "react-native";
 import { StoreContext } from "../stores/progressstore";
+import {VAR} from "../core/variable"
+import FadeInView from "../animation/fadeAnim"
 
 const LocationDetail = ({ location, navigation }) => {
-  const { meState } = useContext(StoreContext);
+  const { meState,ordernumState } = useContext(StoreContext);
   const [me, setMe] = meState;
+  const[ordernum,setordernum]=ordernumState;
 
-  const A=[me._0,me._1,me._2,me._3,me._4,me._5,me._6,me._7,me._8,me._9,me._10,me._11]
+  const answerStateArray=[me._0,me._1,me._2,me._3,me._4,me._5,me._6,me._7,me._8,me._9,me._10,me._11]
   var state="";
   var bgcolor="";
   var statecolor="";
-  if(A[location.array]){
+  if(answerStateArray[location.array]){
     state="已完成";
-    bgcolor="#FEBC5F"
+    bgcolor=VAR.BUTTON_COLOR_SELECTED
     statecolor="#fff"
   }else{
     state="未完成";
-    bgcolor="#DBDBDB"
+    bgcolor=VAR.BUTTON_COLOR
    statecolor="#656565"
   }
 
    return (
-      <View style={styles.cardContainerStyle}>
+      <FadeInView style={styles.cardContainerStyle}>
         <TouchableOpacity 
-            onPress={() => navigation.navigate('Detail',location)} activeOpacity={0.6}
+            onPress={() => {navigation.navigate('Detail',location); setordernum(0);}} activeOpacity={0.6}
           >
             <View style={[styles.locationbox,{backgroundColor:bgcolor}]}>
               <ImageBackground style={{flex:1,width:"95%",flexDirection:"row"}} source={{uri:location.bgimage}}>
@@ -35,7 +38,7 @@ const LocationDetail = ({ location, navigation }) => {
               
             </View>
           </TouchableOpacity>
-      </View>
+      </FadeInView>
   )};
 
 const styles = StyleSheet.create({
@@ -46,11 +49,11 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 0.1,
     elevation: 1,
-    marginLeft: 24,
-    marginRight: 24,
-    marginTop: "5%",
+    marginLeft: VAR.MAIN_MARGIN_LEFT,
+    marginRight: VAR.MAIN_MARGIN_RIGHT,
+    marginTop: VAR.MAIN_MARGIN_TOP,
     marginBottom:4,
-    backgroundColor:"#DBDBDB"
+    backgroundColor:VAR.BUTTON_COLOR
   },
   cardSectionStyle: {
     padding: 5,
@@ -64,16 +67,16 @@ const styles = StyleSheet.create({
   },
   locationbox:{
     height:72,
-    backgroundColor:"#DBDBDB",
+    backgroundColor:VAR.BUTTON_COLOR,
     flexDirection:"row"
   },
   titlebox:{
     justifyContent:"center"
   },
   locationtitle:{
-    fontSize:20,
+    fontSize:18,
     color:"#000000",
-    height:28,
+    height:22,
     marginLeft:40,
     width:105
   },

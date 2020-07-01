@@ -1,12 +1,15 @@
-import React, { useContext, useState,useEffect } from "react";
-import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, StatusBar, TextInput, TouchableHighlight, TouchableOpacity,Alert,AsyncStorage } from 'react-native';
+import React, { useContext, useState, useEffect } from "react";
+import * as firebase from "firebase";
+import { ScrollView, Linking, Text, Image, StyleSheet, ImageBackground, View, StatusBar, TextInput, TouchableHighlight, TouchableOpacity, Alert, AsyncStorage } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Input } from "react-native-elements";
 import { StoreContext } from "../stores/progressstore";
+import { VAR } from "../core/variable"
+import FadeInView from "../animation/fadeAnim"
 const ME_PERSISTENCE_KEY = "ME_PERSISTENCE_KEY";
 const HAS_SET_KEY = "HAS_SET_KEY";
 
-const DetailScreen = ({ route }) => {
+const DetailScreen = ({ navigation, route }) => {
   const { title,
     bgimage,
     recimage,
@@ -14,12 +17,14 @@ const DetailScreen = ({ route }) => {
     hint,
     laybel,
     ans,
-    array
+    array,
+    from
   } = route.params;
-  const { meState, locationsState, contactState } = useContext(StoreContext);
+  const { meState} = useContext(StoreContext);
   const [me, setMe] = meState;
-  let A=[me._0,me._1,me._2,me._3,me._4,me._5,me._6,me._7,me._8,me._9,me._10,me._11]
+  let answerStateArray = [me._0, me._1, me._2, me._3, me._4, me._5, me._6, me._7, me._8, me._9, me._10, me._11]
   const [submit, setsubmit] = useState(false);
+  const [changepage, setchangepage] = useState(0);
 
   const saveToAsyncStorage = () => {
     try {
@@ -36,25 +41,17 @@ const DetailScreen = ({ route }) => {
 
   var showstate = "";
   var showstate1 = ""
-  if (A[array] === false) {
+  if (answerStateArray[array] === false) {
     showstate = "flex";
     showstate1 = "none"
     if (submit === true) {
       showstate = "none";
       showstate1 = "flex";
     }
-  }else{
+  } else {
     showstate = "none";
     showstate1 = "flex";
   }
-  const [countl, setcountl] = useState(0);
-  const [countc, setcountc] = useState(0);
-  // for(let i=0;i<8;i++){
-  //   if(A[i])setcountl(countl+1);
-  // }
-  // for(let i=8;i<12;i++){
-  //   if(A[i])setcountc(countc+1);
-  // }
 
   return (
 
@@ -62,7 +59,7 @@ const DetailScreen = ({ route }) => {
       <KeyboardAwareScrollView>
         <Image style={styles.imgrecStyle} source={{ uri: recimage }} />
 
-        <View style={styles.cardContainerStyle}>
+        <FadeInView style={styles.cardContainerStyle}>
           <View style={styles.introductionbox}>
             <View style={styles.introductiontitlebox}>
               <ImageBackground style={{ flex: 1, width: 156, height: 25, marginBottom: 0 }} source={require('../../assets/bg_introduction.png')}>
@@ -91,27 +88,64 @@ const DetailScreen = ({ route }) => {
                 placeholderTextColor="#fff"
                 style={styles.textbox}
                 value={me.answer}
-                onChangeText={(answer) => setMe({ ...me, answer })}
+                onChangeText={(answer) => setMe({ ...me, answer, changestage: 0 })}
               />
             </View>
             <View style={styles.submitbox}>
               <TouchableHighlight style={[styles.submit, { display: showstate }]}
                 onPress={() => {
-                  if(me.answer===ans){
+                  if (me.answer === ans) {
                     setsubmit(true);
-                    A[array]=true;
-                    if(array<8)setMe({...me,answer:null,_0:A[0],_1:A[1],_2:A[2],_3:A[3],_4:A[4],_5:A[5],_6:A[6],_7:A[7],_8:A[8],_9:A[9],_10:A[10],_11:A[11],locationbar:(me.locationrightans+1)/8,locationrightans:me.locationrightans+1});
-                    else setMe({...me,answer:null,_0:A[0],_1:A[1],_2:A[2],_3:A[3],_4:A[4],_5:A[5],_6:A[6],_7:A[7],_8:A[8],_9:A[9],_10:A[10],_11:A[11],contactbar:(me.contactrightans+1)/4,contactrightans:me.contactrightans+1});
+                    answerStateArray[array] = true;
+                    if (array < 8) {
 
-                     alert(
-                      "回答正確",
-                     )
+                      // if (answerStateArray[0] && answerStateArray[1] && answerStateArray[2] && answerStateArray[3] && answerStateArray[4] && answerStateArray[5] && answerStateArray[6] && answerStateArray[7] && answerStateArray[8] && answerStateArray[9] && answerStateArray[10] && answerStateArray[11]) {
+                        if (answerStateArray[0] && answerStateArray[4]) {
+                        setMe({ ...me, answer: null, completed: true, changestage: 0, _0: answerStateArray[0], _1: answerStateArray[1], _2: answerStateArray[2], _3: answerStateArray[3], _4: answerStateArray[4], _5: answerStateArray[5], _6: answerStateArray[6], _7: answerStateArray[7], _8: answerStateArray[8], _9: answerStateArray[9], _10: answerStateArray[10], _11: answerStateArray[11], locationbar: (me.locationrightans + 1) / 8, locationrightans: me.locationrightans + 1 });
+                        firebase.database().ref(parseInt(me.year / 100000) - 1000).child(me.year).set(
+                          {
+                            "name": me.name,
+                            "timeStamp": Date.now()
+                          })
+                        navigation.navigate(from);
+                        navigation.navigate('排行榜');
+                        alert(
+                          "回答正確",
+                        )
+                      } else {
+                        setMe({ ...me, answer: null, _0: answerStateArray[0], _1: answerStateArray[1], _2: answerStateArray[2], _3: answerStateArray[3], _4: answerStateArray[4], _5: answerStateArray[5], _6: answerStateArray[6], _7: answerStateArray[7], _8: answerStateArray[8], _9: answerStateArray[9], _10: answerStateArray[10], _11: answerStateArray[11], locationbar: (me.locationrightans + 1) / 8, locationrightans: me.locationrightans + 1 });
+                        alert(
+                          "回答正確",
+                        )
+                      }
+
+                    }
+                    else {
+                      if (answerStateArray[0] && answerStateArray[1] && answerStateArray[2] && answerStateArray[3] && answerStateArray[4] && answerStateArray[5] && answerStateArray[6] && answerStateArray[7] && answerStateArray[8] && answerStateArray[9] && answerStateArray[10] && answerStateArray[11]) {
+                        setMe({ ...me, answer: null, completed: true, changestage: 0, _0: answerStateArray[0], _1: answerStateArray[1], _2: answerStateArray[2], _3: answerStateArray[3], _4: answerStateArray[4], _5: answerStateArray[5], _6: answerStateArray[6], _7: answerStateArray[7], _8: answerStateArray[8], _9: answerStateArray[9], _10: answerStateArray[10], _11: answerStateArray[11], contactbar: (me.contactrightans + 1) / 4, contactrightans: me.contactrightans + 1 });
+                        firebase.database().ref(parseInt(me.year/100000)-1000).child(me.year).set(
+                          {
+                          "name":me.name,
+                          "timeStamp": Date.now()
+                        })
+                        navigation.navigate('排行榜');
+                        alert(
+                          "回答正確",
+                        )
+                      } else {
+                        setMe({ ...me, answer: null, _0: answerStateArray[0], _1: answerStateArray[1], _2: answerStateArray[2], _3: answerStateArray[3], _4: answerStateArray[4], _5: answerStateArray[5], _6: answerStateArray[6], _7: answerStateArray[7], _8: answerStateArray[8], _9: answerStateArray[9], _10: answerStateArray[10], _11: answerStateArray[11], contactbar: (me.contactrightans + 1) / 4, contactrightans: me.contactrightans + 1 });
+                        alert(
+                          "回答正確",
+                        )
+                      }
+
+                    }
                   }
-                  else{
+                  else {
                     alert(
                       "回答錯誤",
                     )
-                     setMe({...me,answer:null});
+                    setMe({ ...me, answer: null });
                   }
                 }}
                 activeOpacity={0.6}
@@ -124,7 +158,7 @@ const DetailScreen = ({ route }) => {
 
           </View>
 
-        </View>
+        </FadeInView>
       </KeyboardAwareScrollView>
       <View style={styles.bottom}></View>
     </ImageBackground>
@@ -135,7 +169,7 @@ const DetailScreen = ({ route }) => {
 const styles = StyleSheet.create({
   imgrecStyle: {
     height: 200,
-    backgroundColor: "#DBDBDB"
+    backgroundColor: VAR.BUTTON_COLOR
   },
   cardContainerStyle: {
     shadowColor: "#000",
@@ -143,8 +177,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 28,
-    marginRight: 28,
+    marginLeft: VAR.MAIN_MARGIN_LEFT,
+    marginRight: VAR.MAIN_MARGIN_RIGHT,
     marginTop: 23,
   },
   introductionbox: {
@@ -186,13 +220,13 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     backgroundColor: "#fff",
     height: 48,
-    marginTop: "5%",
+    marginTop: VAR.MAIN_MARGIN_TOP,
     flexDirection: "row"
   },
   hintmark: {
     width: 20,
     height: 48,
-    backgroundColor: "#A7050E"
+    backgroundColor: VAR.MAIN_COLOR
   },
   hintwordbox: {
     height: 48,
@@ -211,8 +245,8 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     // backgroundColor: "#8B8B8B",
     // backgroundColor: "#fff",
-    backgroundColor: "#FEBC5F",
-    marginTop: "5%",
+    backgroundColor: VAR.BUTTON_COLOR_SELECTED,
+    marginTop: VAR.MAIN_MARGIN_TOP,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center"
@@ -238,7 +272,7 @@ const styles = StyleSheet.create({
   submit: {
     width: "100%",
     height: 48,
-    backgroundColor: "#A7050E",
+    backgroundColor: VAR.MAIN_COLOR,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -247,8 +281,22 @@ const styles = StyleSheet.create({
     fontSize: 13
   },
   bottom: {
-    backgroundColor: "#A7050E",
+    backgroundColor: VAR.MAIN_COLOR,
     height: 20
+  },
+  floatbg: {
+    position: 'absolute',
+    width: 300,
+    height: 300,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgb(0,0,0)"
+  },
+  floatbox: {
+    backgroundColor: "#fff",
+    width: "50%",
+    height: 200,
+    flexDirection: "row"
   }
 });
 

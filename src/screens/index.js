@@ -13,6 +13,7 @@ import locationData from "../json/location.json";
 import contactData from "../json/contact.json";
 import homeData from "../json/home.json";
 import rankData from "../json/rank.json";
+import {VAR} from "../core/variable"
 
 export const Stack = createStackNavigator();
 
@@ -27,7 +28,7 @@ export const LocationStack = () => {
               title: " ",
               headerStyle:{
                 height:80,
-                backgroundColor:"#A7050E",
+                backgroundColor:VAR.MAIN_COLOR,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 3 },
                 shadowOpacity: 0.1,
@@ -42,7 +43,7 @@ export const LocationStack = () => {
               title: route.params.title,
               headerStyle: {
                 height:80,
-                backgroundColor:"#A7050E",
+                backgroundColor:VAR.MAIN_COLOR,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 3 },
                 shadowOpacity: 0.1,
@@ -61,7 +62,9 @@ export const LocationStack = () => {
   
 export const ContactStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+        initialRouteName="Home2"
+        >
           <Stack.Screen 
             name="Home2" 
             component={ContactScreen} 
@@ -69,7 +72,7 @@ export const ContactStack = () => {
               title: " ",
               headerStyle:{
                 height:80,
-                backgroundColor:"#A7050E",
+                backgroundColor:VAR.MAIN_COLOR,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 3 },
                 shadowOpacity: 0.1,
@@ -84,7 +87,7 @@ export const ContactStack = () => {
               title: route.params.title,
               headerStyle: {
                 height:80,
-                backgroundColor:"#A7050E",
+                backgroundColor:VAR.MAIN_COLOR,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 3 },
                 shadowOpacity: 0.1,
@@ -96,7 +99,22 @@ export const ContactStack = () => {
                 // marginLeft:-130
               },  
              })}
-          />      
+          />
+           {/* <Stack.Screen 
+            name="Rank" 
+            component={RankScreen} 
+            options={{
+              title: " ",
+              headerStyle:{
+                height:80,
+                backgroundColor:VAR.MAIN_COLOR,
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
+              },
+            headerLeft:()=><Text style={{fontWeight: '400',fontSize: 20,color:"#fff",marginLeft:16}}>{rankData.rankTitle}</Text>
+            }}
+          />            */}
         </Stack.Navigator>
     );
   }
@@ -111,7 +129,7 @@ export const HomeStack = () => {
               title: " ",
               headerStyle:{
                 height:80,
-                backgroundColor:"#A7050E",
+                backgroundColor:VAR.MAIN_COLOR,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 3 },
                 shadowOpacity: 0.1,
@@ -126,7 +144,7 @@ export const HomeStack = () => {
               title:" ",
               headerStyle: {
                 height:80,
-                backgroundColor:"#A7050E",
+                backgroundColor:VAR.MAIN_COLOR,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 3 },
                 shadowOpacity: 0.1,
@@ -143,13 +161,13 @@ export const RankStack = () => {
     return (
         <Stack.Navigator>
           <Stack.Screen 
-            name="Home3" 
+            name="Rank" 
             component={RankScreen} 
             options={{
               title: " ",
               headerStyle:{
                 height:80,
-                backgroundColor:"#A7050E",
+                backgroundColor:VAR.MAIN_COLOR,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 3 },
                 shadowOpacity: 0.1,

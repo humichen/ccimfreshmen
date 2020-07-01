@@ -5,7 +5,7 @@ import locationData from "../json/location.json";
 import { StoreContext } from "../stores/progressstore";
 
 const LocationScreen = ({ navigation }) => {
-  const { locationsState} = useContext(StoreContext);
+  const { locationsState,meState} = useContext(StoreContext);
   const [locations,setlocations] = locationsState;
   return (
     <ImageBackground style={{flex: 1}} source={require('../../assets/bg_all.png')}>

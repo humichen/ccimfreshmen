@@ -9,7 +9,8 @@
         "hint":"提示：從國北的網站的學術單位就可找到文創系的網站了！",
         "laybel":"請輸入首頁的網址",
         "ans":"https://ccim.ntue.edu.tw/",
-        "array":8
+        "array":8,
+        "from":"Home2"
      },
      {
         "title": "文創聯絡網",
@@ -19,7 +20,8 @@
         "hint":"提示：在FB搜尋文創聯絡網",
         "laybel":"請輸入首頁的網址",
         "ans":"https://www.facebook.com/groups/203638959675931/",
-        "array":9
+        "array":9,
+        "from":"Home2"
      },
      {
         "title": "文創新聞台",
@@ -29,7 +31,8 @@
         "hint":"提示：在FB搜尋CCIM News文創新聞台",
         "laybel":"請輸入首頁的網址",
         "ans":"https://www.facebook.com/ccimnews/",
-        "array":10
+        "array":10,
+        "from":"Home2"
      },
      {
         "title": "臥龍二九。",
@@ -39,7 +42,8 @@
         "hint":"提示：在FB搜尋臥龍二九。",
         "laybel":"請輸入首頁的網址",
         "ans":"https://www.facebook.com/wolong2429/",
-        "array":11
+        "array":11,
+        "from":"Home2"
      }
 ]}
   
