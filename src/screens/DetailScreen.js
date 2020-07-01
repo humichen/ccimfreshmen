@@ -99,8 +99,8 @@ const DetailScreen = ({ navigation, route }) => {
                     answerStateArray[array] = true;
                     if (array < 8) {
 
-                      // if (answerStateArray[0] && answerStateArray[1] && answerStateArray[2] && answerStateArray[3] && answerStateArray[4] && answerStateArray[5] && answerStateArray[6] && answerStateArray[7] && answerStateArray[8] && answerStateArray[9] && answerStateArray[10] && answerStateArray[11]) {
-                        if (answerStateArray[0] && answerStateArray[4]) {
+                      if (answerStateArray[0] && answerStateArray[1] && answerStateArray[2] && answerStateArray[3] && answerStateArray[4] && answerStateArray[5] && answerStateArray[6] && answerStateArray[7] && answerStateArray[8] && answerStateArray[9] && answerStateArray[10] && answerStateArray[11]) {
+                        //if (answerStateArray[0] && answerStateArray[4]) {
                         setMe({ ...me, answer: null, completed: true, changestage: 0, _0: answerStateArray[0], _1: answerStateArray[1], _2: answerStateArray[2], _3: answerStateArray[3], _4: answerStateArray[4], _5: answerStateArray[5], _6: answerStateArray[6], _7: answerStateArray[7], _8: answerStateArray[8], _9: answerStateArray[9], _10: answerStateArray[10], _11: answerStateArray[11], locationbar: (me.locationrightans + 1) / 8, locationrightans: me.locationrightans + 1 });
                         firebase.database().ref(parseInt(me.year / 100000) - 1000).child(me.year).set(
                           {
