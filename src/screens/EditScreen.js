@@ -46,7 +46,7 @@ const EditScreen = ({ navigation }) => {
                         <View style={styles.buttonlayout}>
                             <TouchableHighlight onPress={() => {
                             // setMe({...me,completed:false,_0:false,_1:false,_2:false,_3:false,_4:false,_5:false,_6:false,_7:false,});
-                            if(me.completed)firebase.database().ref(parseInt(me.year/100000)-1000+"/"+me.year+"/name").set(me.name);
+                            if(me.completed)firebase.database().ref(parseInt(me.year/100000)-1000+"/"+me.year+"/name").set(changename);
                             setMe({...me,name:changename});
                             navigation.navigate('Home3');
                         }} 
